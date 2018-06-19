@@ -3,3 +3,14 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+.appContainer {
+	display: flex;
+    align-items: center;
+	justify-content: center;
+
+}
+
+.appContainer div {
+	margin: 20px;
+}
