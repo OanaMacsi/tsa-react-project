@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { FormField } from '../Common/Form/FormFields'
 import { connect } from 'react-redux'
+import { editUser, patchUser } from './userActions'
 
 class EditUserProfile extends Component {
-	constructor () {
+	constructor() {
 		super()
 		this.state = {
 			form: {}
@@ -25,12 +26,9 @@ class EditUserProfile extends Component {
 	}
 
 	submit = (e) => {
+		const { editUser } = this.props
 		e.preventDefault()
-		console.log('saving data')
-		this.props.dispatch({
-			type: 'EDIT_USER',
-			newUserData: this.state.form
-		})
+		editUser(this.state.form)
 	}
 
   render() {
@@ -55,4 +53,9 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, null)(EditUserProfile);
+const actions = {
+	editUser,
+	patchUser
+}
+
+export default connect(mapStateToProps, actions)(EditUserProfile);

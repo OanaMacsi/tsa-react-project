@@ -1,0 +1,2 @@
+export const EDIT_USER_ACTION = 'EDIT_USER'
+export const PATCH_USER_ACTION = 'PATCH_USER'
