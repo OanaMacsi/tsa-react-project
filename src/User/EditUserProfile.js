@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormField } from '../Common/Form/FormFields'
 import { connect } from 'react-redux'
-import { editUser, patchUser } from './userActions'
+import { editUser } from './userActions'
 
 class EditUserProfile extends Component {
 	constructor() {
@@ -13,8 +13,6 @@ class EditUserProfile extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props)
-
 		this.setState({
 			loadComplete: true,
 			form: this.props.userData
@@ -22,7 +20,9 @@ class EditUserProfile extends Component {
 	}
 
 	onChange = (stateAttribute) => (event) => {
-		let newFormState = this.state.form
+		let newFormState = {
+			...this.state.form
+		}
 		newFormState[stateAttribute] = event.target.value
 		this.setState({
 			form: newFormState
@@ -61,8 +61,7 @@ const mapStateToProps = state => {
 }
 
 const actions = {
-	editUser,
-	patchUser
+	editUser
 }
 
 export default connect(mapStateToProps, actions)(EditUserProfile);

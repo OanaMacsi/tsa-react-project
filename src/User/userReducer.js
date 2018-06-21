@@ -10,13 +10,14 @@ const initialState = {
 	waitingServer: false
 }
 
-const postReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action = {}) => {
 	switch(action.type) {
 		case UPDATE_USER_DETAILS:
-			console.log('updating user with', action.payload)
 			return {
 				...state,
-				userData: action.payload
+				userData: {
+					...action.payload
+				}
 			};
 
 		case PATCH_USER_ACTION:

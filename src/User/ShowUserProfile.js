@@ -5,7 +5,6 @@ class ShowUserProfile extends Component {
   render() {
 	  const { firstName, lastName, email, phone } = this.props.userData
 	  const { waitingServer } = this.props
-	  console.log('got data: ', this.props.userData)
 
     return (
 	  <div>
@@ -20,11 +19,9 @@ class ShowUserProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { userData, waitingServer } = state
-	console.log(userData)
 	return {
-		userData: userData,
-		waitingServer: waitingServer
+		userData: state.userData,
+		waitingServer: state.waitingServer
     }
 }
 
