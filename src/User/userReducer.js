@@ -1,26 +1,44 @@
-import { EDIT_USER_ACTION, PATCH_USER_ACTION } from './userConstants'
+import { SHOW_LOADING_ICON, HIDE_LOADING_ICON, UPDATE_USER_DETAILS, PATCH_USER_ACTION } from './userConstants'
 
 const initialState = {
-	firstName: 'Test2',
-	lastName: 'Academy',
-	email: 'academy@thinslices.com',
-	phone: '074123456'
+	userData: {
+		firstName: 'Test2',
+		lastName: 'Academy',
+		email: 'academy@thinslices.com',
+		phone: '074123456'
+	},
+	waitingServer: false
 }
 
 const postReducer = (state = initialState, action) => {
 	switch(action.type) {
-	  case EDIT_USER_ACTION:
-		return {
-			...action.payload
-		};
+		case UPDATE_USER_DETAILS:
+			console.log('updating user with', action.payload)
+			return {
+				...state,
+				userData: action.payload
+			};
 
-	  case PATCH_USER_ACTION:
-		return {
-			...state,
-			...action.payload
-		}
-	  default:
-		return state;
+		case PATCH_USER_ACTION:
+			return {
+				...state,
+				userData: {
+					...state.userData,
+					...action.payload
+				}
+			}
+		case SHOW_LOADING_ICON:
+			return {
+				...state,
+				waitingServer: true
+			}
+		case HIDE_LOADING_ICON:
+			return {
+				...state,
+				waitingServer: false
+			}
+		default:
+			return state;
 	}
   }
 

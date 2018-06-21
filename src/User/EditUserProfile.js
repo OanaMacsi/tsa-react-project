@@ -7,12 +7,16 @@ class EditUserProfile extends Component {
 	constructor() {
 		super()
 		this.state = {
+			loadComplete: false,
 			form: {}
 		}
 	}
 
 	componentDidMount() {
+		console.log(this.props)
+
 		this.setState({
+			loadComplete: true,
 			form: this.props.userData
 		})
 	}
@@ -32,16 +36,19 @@ class EditUserProfile extends Component {
 	}
 
   render() {
+	  const { loadComplete } = this.state
 	  const { firstName, lastName, email, phone } = this.state.form
     return (
       <div className="co-form">
-		<form onSubmit={this.submit}>
-			<FormField labelName='Prenume' name='firstName' tagName='first-Name' value={firstName} onChange={this.onChange} />
-			<FormField labelName='Nume' name='lastName' tagName='last-Name' value={lastName} onChange={this.onChange} />
-			<FormField labelName='Email' name='email' tagName='email' value={email} onChange={this.onChange} />
-			<FormField labelName='Telefon' name='phone' tagName='phone' value={phone} onChange={this.onChange} />
-			<input type='submit' value='Salveaza' />
-		</form>
+		{
+			loadComplete && <form onSubmit={this.submit}>
+				<FormField labelName='Prenume' name='firstName' tagName='first-Name' value={firstName} onChange={this.onChange} />
+				<FormField labelName='Nume' name='lastName' tagName='last-Name' value={lastName} onChange={this.onChange} />
+				<FormField labelName='Email' name='email' tagName='email' value={email} onChange={this.onChange} />
+				<FormField labelName='Telefon' name='phone' tagName='phone' value={phone} onChange={this.onChange} />
+				<input type='submit' value='Salveaza' />
+			</form>
+		}
       </div>
     );
   }
@@ -49,7 +56,7 @@ class EditUserProfile extends Component {
 
 const mapStateToProps = state => {
 	return {
-		userData: state
+		userData: state.userData
 	}
 }
 
