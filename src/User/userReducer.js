@@ -11,6 +11,7 @@ const initialState = {
 }
 
 const postReducer = (state = initialState, action = {}) => {
+	console.log('got here in reducer')
 	switch(action.type) {
 		case UPDATE_USER_DETAILS:
 			return {
@@ -19,7 +20,6 @@ const postReducer = (state = initialState, action = {}) => {
 					...action.payload
 				}
 			};
-
 		case PATCH_USER_ACTION:
 			return {
 				...state,

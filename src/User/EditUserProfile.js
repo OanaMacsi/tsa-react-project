@@ -23,6 +23,7 @@ class EditUserProfile extends Component {
 		let newFormState = {
 			...this.state.form
 		}
+
 		newFormState[stateAttribute] = event.target.value
 		this.setState({
 			form: newFormState
