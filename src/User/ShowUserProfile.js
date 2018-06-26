@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { FormContainer } from './EditUserProfile'
 
 class ShowUserProfile extends Component {
   render() {
@@ -7,13 +8,13 @@ class ShowUserProfile extends Component {
 	  const { waitingServer } = this.props
 
     return (
-	  <div>
+	  <FormContainer>
 		<img alt='Loading...' className={waitingServer ? 'loaderIcon' : 'loaderIcon hidden'} src='/loader.gif' />
 		<p>Nume: {lastName}</p>
 		<p>Prenume: {firstName}</p>
 		<p>Email: {email}</p>
 		<p>Phone: {phone}</p>
-      </div>
+      </FormContainer>
     );
   }
 }

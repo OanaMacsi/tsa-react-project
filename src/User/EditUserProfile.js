@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FormField, SelectField } from '../Common/Form/FormFields'
 import { connect } from 'react-redux'
 import { editUser } from './userActions'
+import { Button } from '../Common/CommonStyledComponents'
+import styled from 'styled-components'
 
 class EditUserProfile extends Component {
 	constructor() {
@@ -36,11 +38,15 @@ class EditUserProfile extends Component {
 		editUser(this.state.form)
 	}
 
+	cancelEvent = () => {
+		console.log('s-a razandit')
+	}
+
   render() {
 	  const { loadComplete } = this.state
 	  const { firstName, lastName, email, phone } = this.state.form
     return (
-      <div className="co-form">
+      <FormContainer>
 		{
 			loadComplete && <form onSubmit={this.submit}>
 				<SelectField options={['value1', 'value2', 'value3']} />
@@ -49,12 +55,20 @@ class EditUserProfile extends Component {
 				<FormField labelName='Email' name='email' tagName='email' value={email} onChange={this.onChange} />
 				<FormField labelName='Telefon' name='phone' tagName='phone' value={phone} onChange={this.onChange} />
 				<input type='submit' value='Salveaza' />
+				<Button onClick={this.cancelEvent}>Renunta</Button>
 			</form>
 		}
-      </div>
+      </FormContainer>
     );
   }
 }
+
+export const FormContainer = styled.div`
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	color: ${props => props.makeItPink ? 'pink' : 'black'};
+`
 
 const mapStateToProps = state => {
 	return {
