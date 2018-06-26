@@ -9,3 +9,17 @@ export class FormField extends Component {
 		</div>
 	}
 }
+
+export class SelectField extends Component {
+
+	renderSelectOptions(selectOptions) {
+		return selectOptions.map((option, i) => (<option key={option + i}>{option}</option>))
+	}
+
+	render () {
+		const {options} = this.props
+		return <select>
+			{this.renderSelectOptions(options)}
+		</select>
+	}
+}

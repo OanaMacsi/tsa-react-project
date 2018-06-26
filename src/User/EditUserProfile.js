@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormField } from '../Common/Form/FormFields'
+import { FormField, SelectField } from '../Common/Form/FormFields'
 import { connect } from 'react-redux'
 import { editUser } from './userActions'
 
@@ -43,6 +43,7 @@ class EditUserProfile extends Component {
       <div className="co-form">
 		{
 			loadComplete && <form onSubmit={this.submit}>
+				<SelectField options={['value1', 'value2', 'value3']} />
 				<FormField labelName='Prenume' name='firstName' tagName='first-Name' value={firstName} onChange={this.onChange} />
 				<FormField labelName='Nume' name='lastName' tagName='last-Name' value={lastName} onChange={this.onChange} />
 				<FormField labelName='Email' name='email' tagName='email' value={email} onChange={this.onChange} />

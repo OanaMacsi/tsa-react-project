@@ -11,7 +11,6 @@ const initialState = {
 }
 
 const postReducer = (state = initialState, action = {}) => {
-	console.log('got here in reducer')
 	switch(action.type) {
 		case UPDATE_USER_DETAILS:
 			return {
