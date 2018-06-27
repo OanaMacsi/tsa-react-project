@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EditUserProfile from './User/EditUserProfile'
 import ShowUserProfile from './User/ShowUserProfile'
+import ErrorBox from './Common/ErrorBox'
 import userReducer from './User/userReducer'
 import userSagas from './User/userSagas'
 import './App.css';
@@ -27,8 +28,7 @@ const userFilter = createBlacklistFilter('userData', ['email', 'phone'])
 const persistConfig = {
 	key: 'root',
 	storage: localForage,
-	blacklist: ['waitingServer'],
-	transforms: [userFilter]
+	blacklist: ['waitingServer', 'showUserError']
   }
 
 const persistedReducer = persistReducer(persistConfig, userReducer)
@@ -48,6 +48,7 @@ class App extends Component {
 	return   <Provider store={store}>
 		<PersistGate loading={null} persistor={persistor}>
 			<div className='appContainer'>
+				<ErrorBox />
 				<ShowUserProfile />
 				<EditUserProfile />
 			</div>
